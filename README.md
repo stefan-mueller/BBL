@@ -28,7 +28,7 @@ Ein paar Anmerkungen zur Berechnung:
 
 * Es sind lediglich Spieler einbezogen, die über die ganze Saison hinweg mindestens eine Minute auf dem Feld standen.
 
-* Bei Spielern, die während der Saison innerhalb der BBL wechselten (in den 5 Saisons insgesamt 24 Spieler), wurde der Club ausgewählt, für den ein Spieler mehr Spiele absolviert hat.
+* Bei Spielern, die während der Saison innerhalb der BBL wechselten, wurde der Club ausgewählt, für den ein Spieler mehr Spiele absolviert hat.
 
 * Während der Saison nachverpflichte Spieler fließen ebenfalls in die Statistik als potentielle verbliebene Spieler ein.
 
