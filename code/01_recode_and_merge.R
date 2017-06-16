@@ -241,7 +241,7 @@ ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio,
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
-ggsave("output/ratio_total.jpg", height = 5, width = 8)
+ggsave("output/ratio_total.jpg", height = 4, width = 7.5)
 
 
 
@@ -257,7 +257,7 @@ plot_1617 <- ggplot(filter(dta_final_summarised_long, season == "2016/17"),
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
-ggsave(plot_1617, file = "output/ratio_1617.jpg", height = 5, width = 8)
+ggsave(plot_1617, file = "output/ratio_1617.jpg", height = 4, width = 7.5)
 
 plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
@@ -271,7 +271,7 @@ plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"),
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
-ggsave(plot_1516, file = "output/ratio_1516.jpg", height = 5, width = 8)
+ggsave(plot_1516, file = "output/ratio_1516.jpg", height = 4, width = 7.5)
 
 plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
@@ -285,7 +285,7 @@ plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"),
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
-ggsave(plot_1415, file = "output/ratio_1415.jpg", height = 5, width = 8)
+ggsave(plot_1415, file = "output/ratio_1415.jpg", height = 4, width = 7.5)
 
 
 plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"), 
@@ -300,7 +300,7 @@ plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"),
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
-ggsave(plot_1314, file = "output/ratio_1314.jpg", height = 5, width = 8)
+ggsave(plot_1314, file = "output/ratio_1314.jpg", height = 4, width = 7.5)
 
 
 plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"), 
@@ -315,5 +315,5 @@ plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"),
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
-ggsave(plot_1213, file = "output/ratio_1213.jpg", height = 5, width = 8)
+ggsave(plot_1213, file = "output/ratio_1213.jpg",height = 4, width = 7.5)
 
