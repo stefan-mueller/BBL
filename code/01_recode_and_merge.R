@@ -241,7 +241,7 @@ ggplot(dta_final_summarised_long_total,
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler \n(Durchschnitt 2012 bis 2016)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler \n(Durchschnitt 2012/13 bis 2016/17)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
