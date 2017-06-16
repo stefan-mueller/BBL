@@ -57,7 +57,7 @@ dta <- dta %>%
   mutate(name = ifelse(name == "ANDERSON K" & club == "Eisbären Bremerhaven", "ANDERSON KYLE",
                        ifelse(name == "GIBSON D" & club == "FRAPORT SKYLINERS", "GIBSON DEVIN",
                               ifelse(name == "KING A" & club == "Artland Dragons", "KING ANTHONY",
-                                     ifelse(name == "SANDERS J" & club == "Telekom Baskets Bonn", "SANDERS JAMAL", name))))) %>% 
+                                     ifelse(name == "SANDERS J" & club == "Telekom Baskets Bonn", "SANDERS JAMARR", name))))) %>% 
   mutate(player_season = paste(name, season, sep = "_"))
 
 dta <- dta[order(dta$player_season, -abs(dta$games) ), ] #sort by id and reverse of abs(value)
