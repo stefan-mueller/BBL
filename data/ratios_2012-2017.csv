@@ -1,23 +1,23 @@
 "club","season","stayed_ratio","stayed_ratio_morethan5ppg","stayed_ratio_morethan15mpg"
-"ALBA BERLIN","2012/13",43.75,27.27,27.27
-"Artland Dragons","2012/13",26.67,10,20
+"ALBA BERLIN","2012/13",37.5,27.27,27.27
+"Artland Dragons","2012/13",31.25,18.18,27.27
 "Basketball Löwen Braunschweig","2012/13",37.5,27.27,36.36
 "Brose Bamberg","2012/13",37.5,27.27,25
 "Eisbären Bremerhaven","2012/13",33.33,11.11,11.11
-"EWE Baskets Oldenburg","2012/13",61.54,50,50
-"FC Bayern München","2012/13",64.29,55.56,55.56
-"FRAPORT SKYLINERS","2012/13",25,10,18.18
+"EWE Baskets Oldenburg","2012/13",53.85,50,50
+"FC Bayern München","2012/13",57.14,55.56,55.56
+"FRAPORT SKYLINERS","2012/13",25,20,27.27
 "GIESSEN 46ers","2012/13",22.22,20,20
 "medi bayreuth","2012/13",46.15,37.5,33.33
-"MHP RIESEN Ludwigsburg","2012/13",11.11,0,0
+"MHP RIESEN Ludwigsburg","2012/13",0,0,0
 "Phoenix Hagen","2012/13",25,14.29,14.29
 "ratiopharm ulm","2012/13",46.67,45.45,55.56
 "s.Oliver Baskets","2012/13",40,36.36,36.36
-"TBB Trier","2012/13",41.67,28.57,25
+"TBB Trier","2012/13",33.33,28.57,25
 "Telekom Baskets Bonn","2012/13",46.67,44.44,44.44
 "WALTER Tigers Tübingen","2012/13",50,57.14,57.14
 "ALBA BERLIN","2013/14",13.33,0,0
-"Artland Dragons","2013/14",25,0,0
+"Artland Dragons","2013/14",30.77,14.29,12.5
 "Basketball Löwen Braunschweig","2013/14",29.41,28.57,28.57
 "Brose Bamberg","2013/14",50,40,41.67
 "Eisbären Bremerhaven","2013/14",31.25,25,22.22
@@ -34,7 +34,7 @@
 "Telekom Baskets Bonn","2013/14",42.86,42.86,44.44
 "WALTER Tigers Tübingen","2013/14",35.71,22.22,20
 "ALBA BERLIN","2014/15",53.85,55.56,55.56
-"Artland Dragons","2014/15",53.85,55.56,66.67
+"Artland Dragons","2014/15",57.14,60,70
 "Basketball Löwen Braunschweig","2014/15",46.15,28.57,28.57
 "Brose Bamberg","2014/15",26.67,10,20
 "Eisbären Bremerhaven","2014/15",26.67,14.29,12.5
@@ -69,7 +69,7 @@
 "Basketball Löwen Braunschweig","2016/17",23.08,14.29,22.22
 "BG Göttingen","2016/17",30.77,12.5,12.5
 "Brose Bamberg","2016/17",58.82,64.29,66.67
-"Eisbären Bremerhaven","2016/17",13.33,25,25
+"Eisbären Bremerhaven","2016/17",12.5,22.22,22.22
 "EWE Baskets Oldenburg","2016/17",64.29,71.43,71.43
 "FC Bayern München","2016/17",33.33,40,36.36
 "FRAPORT SKYLINERS","2016/17",54.55,50,40
@@ -79,5 +79,5 @@
 "Phoenix Hagen","2016/17",0,0,0
 "ratiopharm ulm","2016/17",52.94,66.67,60
 "s.Oliver Baskets","2016/17",31.25,42.86,40
-"Telekom Baskets Bonn","2016/17",15.38,0,0
+"Telekom Baskets Bonn","2016/17",14.29,0,0
 "WALTER Tigers Tübingen","2016/17",25,12.5,12.5

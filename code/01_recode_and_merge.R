@@ -50,16 +50,25 @@ dta <- dta %>%
                             'LTi GIESSEN 46ers'='GIESSEN 46ers';'Brose Baskets'='Brose Bamberg'; 'BBC Bayreuth'='medi bayreuth';
                             's.Oliver Würzburg'='s.Oliver Baskets'"))
 
+## Recode names (some players have the same name (and first letter of first name))
+# but are different players in different clubs)
+
+dta <- dta %>% 
+  mutate(name = ifelse(name == "ANDERSON K" & club == "Eisbären Bremerhaven", "ANDERSON KYLE",
+                       ifelse(name == "GIBSON D" & club == "FRAPORT SKYLINERS", "GIBSON DEVIN",
+                              ifelse(name == "KING A" & club == "Artland Dragons", "KING ANTHONY",
+                                     ifelse(name == "SANDERS J" & club == "Telekom Baskets Bonn", "SANDERS JAMAL", name))))) %>% 
+  mutate(player_season = paste(name, season, sep = "_"))
+
 dta <- dta[order(dta$player_season, -abs(dta$games) ), ] #sort by id and reverse of abs(value)
 nrow(dta)
 
-dta_duplicated <- unique( dta[ , 2] )
-  
-duplicated <- dta[duplicated(dta[,2]),] %>% 
-  arrange(name)
+# duplicated <- dta[duplicated(dta[,2]),] %>% 
+#   arrange(name)
+# 
+# write.csv(duplicated, "duplicated.csv", fileEncoding = "utf-8")
 
-
-dta_unique <- dta[ !duplicated(dta$player_season), ]              # take the first row within each id
+dta_unique <- dta[ !duplicated(dta$player_season), ] # take the first row within each id
 nrow(dta_unique)
 
 dta_small <- dta_unique %>% 
