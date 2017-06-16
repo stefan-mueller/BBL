@@ -373,7 +373,7 @@ ggplot(dta_final_compare_years, aes(x = season, y = mean_type,
   ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler\n(vereinsübergreifend pro Saison)") +
   theme_bw() +
   theme(legend.position = "bottom")
-ggsave("output/comparison_per_season.jpg", width = 5, height = 4)
+ggsave("output/comparison_per_season.jpg", width = 6, height = 6)
 
 ## Load ratios reported by Baskets Bonn
 
@@ -390,13 +390,13 @@ library(ggrepel)
 ggplot(data = dta_merged, aes(x = stayed_ratio_baskets_bonn, y = stayed_ratio_all)) +
   geom_abline(slope = 1, colour = "grey20", linetype = 2) +
   geom_point(alpha = 0.8, size = 2) +
-  geom_text_repel(aes(label = club), size = 2) +
+  geom_text_repel(aes(label = club), size = 4) +
   scale_x_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
   scale_y_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
   xlab("Durcschnitt (berechnet von Baskets Bonn)") +
   ylab("Durchschnitt (eigene Berechnungen)") +
-  ggtitle("Vergleich der Prozentsatzes der verbliebenen Spieler\n(2012/13–2016/17)") +
+  ggtitle("Vergleich der Prozentsatzes der verbliebenen Spieler\n(2012/13 bis 2016/17)") +
   theme_bw()
-ggsave("output/comparison_ratios.jpg", width = 7, height = 7)
+ggsave("output/comparison_ratios.jpg", width = 7.5, height = 7.5)
 
 cor.test(dta_merged$stayed_ratio_all, dta_merged$stayed_ratio_baskets_bonn)
