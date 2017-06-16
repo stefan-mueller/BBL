@@ -220,6 +220,10 @@ dta_final_summarised_total <- dta_final_summarised %>%
   unique()
 
 
+## Save this dataset
+
+write.csv(dta_final_summarised_total, "data/ratios_aggregated.csv", fileEncoding = "utf-8", row.names = FALSE)
+
 dta_final_summarised_long <- dta_final_summarised %>% 
   tidyr::gather(type_ratio, ratio, stayed_ratio, stayed_ratio_morethan5ppg, stayed_ratio_morethan15mpg) 
   
