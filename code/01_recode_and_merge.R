@@ -4,25 +4,25 @@ library(tidyverse)
 
 # Load data
 
-dta_raw_1617 <- read.csv("raw_data/beko_bbl_2016-17.csv", 
+dta_raw_1617 <- read.csv("raw_data/bbl_2016-17.csv", 
                          header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1617") 
 
 #names(dta_raw_1617)[2] <- c("E","F")
-dta_raw_1516 <- read.csv("raw_data/beko_bbl_2015-16.csv",
+dta_raw_1516 <- read.csv("raw_data/bbl_2015-16.csv",
                          header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1516")
 
-dta_raw_1415 <- read.csv("raw_data/beko_bbl_2014-15.csv", header = TRUE, fileEncoding = "utf-8") %>% 
+dta_raw_1415 <- read.csv("raw_data/bbl_2014-15.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1415")
 
-dta_raw_1314 <- read.csv("raw_data/beko_bbl_2013-14.csv", header = TRUE, fileEncoding = "utf-8") %>% 
+dta_raw_1314 <- read.csv("raw_data/bbl_2013-14.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1314")
 
-dta_raw_1213 <- read.csv("raw_data/beko_bbl_2012-13.csv", header = TRUE, fileEncoding = "utf-8") %>% 
+dta_raw_1213 <- read.csv("raw_data/bbl_2012-13.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1213")
 
-dta_raw_1112 <- read.csv("raw_data/beko_bbl_2011-12.csv", header = TRUE, fileEncoding = "utf-8") %>% 
+dta_raw_1112 <- read.csv("raw_data/bbl_2011-12.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1112")
 
 ## Bind datasets
@@ -132,7 +132,7 @@ dta_long <- dta_long %>%
   mutate(season = as.factor(season),
          club = as.factor(club)) %>% 
   filter(season != "2011/12") %>% 
-  filter(minutes > 20) # Keep only players who played more than 20 minutes in the season
+  filter(minutes > 1) # Keep only players who played during the season
 
 
 ## Mark promoted teams
@@ -150,10 +150,9 @@ dta_final <- dta_long %>%
   group_by(club) %>% 
   select(name, stayed, club:efpg) %>% 
   arrange(season, club) 
- # filter(club == "Telekom Baskets Bonn")
 
+## Calculate stay ratio
 
-# Calculate stayed ratio
 dta_final <- dta_final %>% 
   mutate(morethan15mpg = ifelse(mpg > 15, "More than 15 minutes/game", "Less than 15 minutes/game")) %>% 
   mutate(morethan5ppg = ifelse(ppg > 5, "More than 5 points/game", "Less than 5 points/game"))
@@ -161,10 +160,7 @@ dta_final <- dta_final %>%
 
 ## Save this dataset
 
-write.csv(dta_final, "data/beko_bbl_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
-# dta_final_Bonn <- dta_final %>% 
-#   filter(club == "Telekom Baskets Bonn")
-
+write.csv(dta_final, "data/bbl_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
 
 dta_stayed <- dta_final %>% 
   group_by(club, season) %>% 
@@ -231,10 +227,8 @@ ggplot(dta_final_summarised_long, aes(x = club, y = ratio, order = ratio, colour
 ggsave("output/ratio_season.jpg", height = 12, width = 12)
 
 
- dta_final_summarised_long_total <- dta_final_summarised_total %>% 
-  tidyr::gather(type_ratio, ratio, stayed_ratio_all, stayed_ratio_morethan5ppg_all, stayed_ratio_morethan10mpg_all) 
-
-
+dta_final_summarised_long_total <- dta_final_summarised_total %>% 
+  tidyr::gather(type_ratio, ratio, stayed_ratio_all, stayed_ratio_morethan5ppg_all, stayed_ratio_morethan15mpg_all) 
 
 ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
   geom_point(alpha = 0.7, size = 2) +
@@ -250,146 +244,3 @@ ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio,
 ggsave("output/ratio_total.jpg", height = 5, width = 8)
 
 
-  dta_stayed_ratio <- dta_stay %>% 
-  group_by(club_season1213) %>% 
-  mutate(ratio_stay2013 = mean(stayed2013, na.rm = FALSE))
-
-dta_select_clubs <- dta_stay %>% 
-  select(starts_with("club_season"), name, stayed2013:stayed2016, mpg_season1213:mpg_season1617)
-
-
-dta_summarised <- dta_select_clubs %>% 
-  filter(!is.na(club_season1415)) %>% 
-  select(club_season1415, stayed2015, mpg_season1415, name) %>% 
-  filter(mpg_season1415 > 5) %>% 
-  group_by(club_season1415) %>% 
-  arrange(club_season1415)
-  #summarise(stayed_ratio = mean(stayed2015, na.rm = TRUE))
-
-dta_summarised
-  
-mutate(ratio_stayed2016 = ifelse())
-  select(season1617_club, stayed2016, name) %>% 
-  filter(!is.na(stayed2016))
-  group_by(season1617_club) %>% 
-  summarise(stayed_ratio = mean(stayed2016, na.rm = TRUE))
-
-dta_summarised
-ggplot(dta_summarised, aes(x = ))
-
-head(dta_unique_wide)
-df %>% 
-  gather(variable, value, -(month:student)) %>%
-  unite(temp, student, variable) %>%
-  spread(temp, value)
-
-dta_per_season <- spread(data = dta_small, 
-             key = season,
-             value = minutes_per_game) %>% 
-  separate(player_club, c("player", "club"), sep = "_", remove = FALSE) %>% 
-  arrange(club) %>% 
-  filter(club == "Telekom Baskets Bonn")
-
-
-dta_per_season <- dta_per_season %>% 
-  mutate(stayed_2013 = ifelse(!is.na(`2012/2013`) & is.na(`2013/2014`), 1, 0)) %>% 
-  mutate(stayed_2014 = ifelse(!is.na(`2013/2014`) & is.na(`2014/2015`), "stayed", "left")) %>% 
-  mutate(stayed_2015 = ifelse(!is.na(`2014/2015`) & is.na(`2015/2016`), "stayed", "left")) %>% 
-  mutate(stayed_2016 = ifelse(!is.na(`2015/2016`) & is.na(`2016/2017`), "stayed", "left"))
-
-dta_summer_2013 <- dta_per_season %>% 
-  filter(!is.na(`2012/2013`))
-
-glm1 <- glm(factor(stayed_2013) ~ as.numeric(`2012/2013`), 
-            data = dta_summer_2013, family = binomial(link = "logit"))
-
-head(wb)
-dta_wide <- spread(dta_small, name, season)
-iris.df = as.data.frame(iris)
-iris.df$row <- 1:nrow(iris.df) ## added explicit row numbers
-long <- gather(iris.df, vars, val, -Species, -row) ## and made sure to keep em
-wide <- spread(long, vars, val)
-
-
-head(dta_small)
-
-dta_dyadic <- merge(dta, dta, by = "name", all.x = TRUE, all.y = TRUE)
-
-dta_subset <- dta[1:15,]
-
-head(dta_subset)
-# Select all columns except player name and season
-cols <- colnames(dta)[2:max(ncol(dta)-1)]
-
-cols
-dta_spread <- reshape(dta, idvar = "name", timevar = "season", direction = "wide")
-
-my.df <- data.frame(ID=rep(c("Günther","Günther","Wobo"), 5), TIME=rep(1:5, each=3), X=1:15, Y=16:30)
-
-
-ID TIME X  Y
-1  A    1 1 16
-2  B    1 2 17
-3  C    1 3 18
-4  A    2 4 19
-5  B    2 5 20
-6  C    2 6 21
-
-library(magrittr); requireNamespace("tidyr"); requireNamespace("dplyr")
-
-my.df %>% 
-  tidyr::gather_(key="variable", value="value", c("X", "Y")) %>%  # Make it even longer.
-  dplyr::mutate(                                                  # Create the spread key.
-    time_by_variable   = paste0(variable, "_", TIME)
-  ) %>% 
-  dplyr::select(ID, time_by_variable, value) %>%                  # Retain these three.
-  tidyr::spread(key=time_by_variable, value=value)                # Spread/widen.
-
-dta %>% 
-  tidyr::gather_(key="variable", value="value", cols) %>%  # Make it even longer.
-  dplyr::mutate(                                                  # Create the spread key.
-    time_by_variable   = paste0(variable, "_", TIME)
-  ) %>% 
-  dplyr::select(ID, time_by_variable, value) %>%                  # Retain these three.
-  tidyr::spread(key=time_by_variable, value=value)                # Spread/widen.
-
-
-dta_new <- dta %>% 
-  group_by(name) %>% 
-  mutate(number_clubs = length(unique(club)))
-
-dta_all_players <- dta_new %>% 
-  select(name) %>% 
-  unique()
-
-nrow(dta_all)
-dta_player <- dta_new %>% 
-  select(name, number_clubs) %>% 
-  arrange(-number_clubs) %>% 
-  unique() %>% 
-  filter(number_clubs > 2)
-  
-
-head(dta_player)
-
-ggplot(dta_player, aes(x = reorder(name, number_clubs), y = number_clubs)) +
-  geom_point() +
-  coord_flip()
-
-
-## Merge dta_new by dta_new
-
-dta_spread <- dta_new %>% 
-  ungroup() %>% 
-  tidyr::spread(name, season, club)
-
-
-dshead(dta)
-length(unique(x)
-## Now make the dataset to a wide format
-
-dta_spread <- dta %>%
-  spread(season, club, name)
-
-
-mutate(player_new = gsub("[(*)]", "_", player))
