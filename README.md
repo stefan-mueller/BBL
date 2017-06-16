@@ -24,7 +24,7 @@ Interessanterweise weichen meine Zahlen von denen der Baskets ab (siehe Anmerkun
 
 ![](https://raw.githubusercontent.com/stefan-mueller/BBL/master/output/ratio_1213.jpg)
 
-Mit dem neuen Datensatz lässt sich außerdem überprüfen, wie sich der prozentuale Anteil der "gehaltenen Spieler" vereinsübergreifend entwickelt hat. Hierzu berechne ich den Mittelwert aller Vereine pro Saison. Interesssanterweise ist _kein_ eindeutiger Trend festzustellen. In allen Saisons (Ausnahme ist 2014/15) wurden weniger "Leistungsträger" (gemessen in Form von Minuten und/oder Punkten) gehalten. Nur 2014/15 war der Anteil der gehaltenen Spielern mit >15 Minuten minimal höher als die Gesamt-Prozentzahl. Die Werte schwanken zwischen 30 und 47 Prozent, wobei die Saison 2014/15 ein Ausreißer nach oben ist. Die schwarze vertikale Linie zeigt den Mittelwert aller Saisons, der laut meinen Berechnungen bei etwas weniger als 40 Prozent des Kaders liegt.
+Mit dem neuen Datensatz lässt sich außerdem überprüfen, wie sich der prozentuale Anteil der "gehaltenen Spieler" vereinsübergreifend entwickelt hat. Hierzu berechne ich den Mittelwert aller Vereine pro Saison. Interesssanterweise ist _kein_ eindeutiger Trend festzustellen. In allen Saisons (Ausnahme ist 2014/15) wurden weniger "Leistungsträger" (gemessen in Form von Minuten und/oder Punkten) gehalten. Nur 2014/15 war der Anteil der gehaltenen Spielern mit >15 Minuten minimal höher als die Gesamt-Prozentzahl. Die Werte schwanken zwischen 30 und 47 Prozent, wobei die Saison 2014/15 ein Ausreißer nach oben ist. 
 
 
 ![](https://raw.githubusercontent.com/stefan-mueller/BBL/master/output/comparison_per_season.jpg)
