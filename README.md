@@ -9,9 +9,20 @@ Dieses Repository beinhaltet die genutzen [Rohdaten](raw_data), webscraped von d
 
 Interessanterweise weichen meine Zahlen von denen der Baskets ab (s. Anmerkungen unten). Kenner der jeweiligen Vereine können [hier](data/bbl_2012-2017) gerne nachschauen, ob bei ihrem jeweiligen Verein die Spieler korrekt kodiert wurden (ich habe dies für meine Telekom Baskets und zufallsweise für andere Vereine gecheckt). Hierbei ist die Spalte `stayed` zu beachten: Wenn `stayed` den Wert 1 hat, heißt dies, dass der Spieler auch in der Vorsaison bei dem selben Club gespielt hat. Eine 0 impliziert, dass der Spieler neu verpflichtet wurde. 
 
+## 2012-2017
 ![Prozentualer Anteil von verbliebenen Spielern, aggregiert](output/ratio_total.jpg)
 
-![Prozentualer Anteil von verbliebenenen Spielern pro Saison](ratio_season_detailed.pdf)
+## Aufschlüsselung pro Saison
+
+![](output/ratio_1617.jpg)
+
+![](output/ratio_1516.jpg)
+
+![](output/ratio_1415.jpg)
+
+![](output/ratio_1314.jpg)
+
+![](output/ratio_1213.jpg)
 
 Ein paar Anmerkungen zur Berechnung:
 * Es sind lediglich Spieler einbezogen, die über die ganze Saison hinweg mindestens eine Minute auf dem Feld standen.
