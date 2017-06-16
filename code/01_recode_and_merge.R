@@ -8,7 +8,6 @@ dta_raw_1617 <- read.csv("raw_data/bbl_2016-17.csv",
                          header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1617") 
 
-#names(dta_raw_1617)[2] <- c("E","F")
 dta_raw_1516 <- read.csv("raw_data/bbl_2015-16.csv",
                          header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1516")
@@ -231,7 +230,7 @@ dta_final_summarised_long_total <- dta_final_summarised_total %>%
   tidyr::gather(type_ratio, ratio, stayed_ratio_all, stayed_ratio_morethan5ppg_all, stayed_ratio_morethan15mpg_all) 
 
 ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
-  geom_point(alpha = 0.7, size = 2) +
+  geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
@@ -247,7 +246,7 @@ ggsave("output/ratio_total.jpg", height = 4, width = 7.5)
 
 plot_1617 <- ggplot(filter(dta_final_summarised_long, season == "2016/17"), 
        aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
-  geom_point(alpha = 0.7, size = 2) +
+  geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
@@ -261,7 +260,7 @@ ggsave(plot_1617, file = "output/ratio_1617.jpg", height = 4, width = 7.5)
 
 plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
-  geom_point(alpha = 0.7, size = 2) +
+  geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
@@ -275,7 +274,7 @@ ggsave(plot_1516, file = "output/ratio_1516.jpg", height = 4, width = 7.5)
 
 plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
-  geom_point(alpha = 0.7, size = 2) +
+  geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
@@ -290,7 +289,7 @@ ggsave(plot_1415, file = "output/ratio_1415.jpg", height = 4, width = 7.5)
 
 plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
-  geom_point(alpha = 0.7, size = 2) +
+  geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
@@ -305,7 +304,7 @@ ggsave(plot_1314, file = "output/ratio_1314.jpg", height = 4, width = 7.5)
 
 plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
-  geom_point(alpha = 0.7, size = 2) +
+  geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
