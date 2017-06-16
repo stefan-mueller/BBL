@@ -220,7 +220,7 @@ ggplot(dta_final_summarised_long, aes(x = club, y = ratio, order = ratio, colour
   coord_flip() +
   ylab(NULL) +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler") +
   theme_bw() +
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
@@ -237,7 +237,7 @@ ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio,
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler \n(Durchschnitt 2012 bis 2016)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler \n(Durchschnitt 2012 bis 2016)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
@@ -253,10 +253,11 @@ plot_1617 <- ggplot(filter(dta_final_summarised_long, season == "2016/17"),
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2016/17)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2016/17)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
+ggsave(plot_1617, file = "output/ratio_1617.jpg", height = 5, width = 8)
 
 plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
@@ -266,10 +267,11 @@ plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"),
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2015/16)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2015/16)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
+ggsave(plot_1516, file = "output/ratio_1516.jpg", height = 5, width = 8)
 
 plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"), 
                     aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
@@ -279,10 +281,11 @@ plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"),
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2014/15)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2014/15)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
+ggsave(plot_1415, file = "output/ratio_1415.jpg", height = 5, width = 8)
 
 
 plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"), 
@@ -293,10 +296,11 @@ plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"),
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2013/14)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2013/14)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
+ggsave(plot_1314, file = "output/ratio_1314.jpg", height = 5, width = 8)
 
 
 plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"), 
@@ -307,13 +311,9 @@ plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"),
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2012/13)") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2012/13)") +
   theme_bw() + 
   theme(legend.position = "bottom",
         axis.text = element_text(colour = "black"))
+ggsave(plot_1213, file = "output/ratio_1213.jpg", height = 5, width = 8)
 
-pdf("ratio_season_detailed.pdf", width = 10, height = 20)
-gridExtra::grid.arrange(plot_1617, plot_1516,
-                        plot_1415, plot_1314,
-                        plot_1213, ncol = 1)
-dev.off()
