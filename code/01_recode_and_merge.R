@@ -352,6 +352,28 @@ plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"),
         axis.text = element_text(colour = "black"))
 ggsave(plot_1213, file = "output/ratio_1213.jpg",height = 5, width = 7.5)
 
+
+dta_final_compare_years <- dta_final_summarised_long %>% 
+  group_by(season, type_ratio) %>% 
+  mutate(mean_type = mean(ratio)) %>% 
+  select(season, type_ratio, mean_type) %>% 
+  unique()
+
+
+ggplot(dta_final_compare_years, aes(x = season, y = mean_type, 
+                                    colour = type_ratio,
+                                    shape = type_ratio)) +
+  geom_point() +
+  scale_y_continuous(limits = c(0, 50)) +
+  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  coord_flip() +
+  xlab(NULL) +
+  ylab("Prozent") +
+  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler\n(vereinsübergreifend pro Saison)") +
+  theme_bw()
+ggsave("output/comparison_per_season.jpg", width = 7, height = 7)
+
 ## Load ratios reported by Baskets Bonn
 
 dta_baskets <- read.csv("raw_data/ratios_baskets_bonn.csv",
@@ -371,9 +393,9 @@ ggplot(data = dta_merged, aes(x = stayed_ratio_baskets_bonn, y = stayed_ratio_al
   scale_x_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
   scale_y_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
   xlab("Durcschnitt (berechnet von Baskets Bonn)") +
-  ylab("Durschschnitt (eigene Berechnungen)") +
+  ylab("Durchschnitt (eigene Berechnungen)") +
   ggtitle("Vergleich der Prozentsatzes der verbliebenen Spieler\n(2012/13–2016/17)") +
   theme_bw()
-ggsave("output/comparison_ratios.jpg", width = 5, height = 5)
+ggsave("output/comparison_ratios.jpg", width = 7, height = 7)
 
 cor.test(dta_merged$stayed_ratio_all, dta_merged$stayed_ratio_baskets_bonn)

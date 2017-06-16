@@ -24,6 +24,10 @@ Interessanterweise weichen meine Zahlen von denen der Baskets ab (siehe Anmerkun
 
 ![](https://raw.githubusercontent.com/stefan-mueller/BBL/master/output/ratio_1213.jpg)
 
+Mit dem neuen Datensatz lässt sich außerdem überprüfen, wie sich der prozentuale Anteil der "gehaltenen Spieler" vereinsübergreifend entwickelt hat. Hierzu berechne ich den Mittelwert aller Vereine 
+
+
+
 Ein paar Anmerkungen zur Berechnung:
 
 * Es sind lediglich Spieler einbezogen, die über die ganze Saison hinweg mindestens eine Minute auf dem Feld standen.
@@ -38,5 +42,9 @@ Ein paar Anmerkungen zur Berechnung:
 
 * Falls ein Club zwischen 2012 und 2017 den Vereinsnamen geändert hat, wurde die aktuellst Bezeichnung auf alle vergangenen Saisons angewendet. 
 
-Wenn ich nun die aggregierten Zahlen meiner Berechnung mit denen der Telekom Baskets Bonn vergleiche, fällt auf, dass die Korrelation nicht perfekt ist (dann wären alle Punkte auf der diagonalen gestrichelten Linie). Der Korrelationskoeffizient beträgt 0.85. Bei der Berechnung scheint es also Unterschiede gegeben zu haben. 
+Wenn ich nun die aggregierten Zahlen meiner Berechnung mit denen der Telekom Baskets Bonn vergleiche, fällt auf, dass die Korrelation nicht perfekt ist (dann wären alle Punkte auf der diagonalen gestrichelten Linie). Der Korrelationskoeffizient beträgt 0.85. Bei der Berechnung scheint es also Unterschiede gegeben zu haben. Allerdings sind die von mir berechneten Werte tendenziell noch etwas höher als die Werte, die die Telekom Baskets [vermelden](https://www.telekom-baskets-bonn.de/presse/background/fluktuation.html). Die Grundaussage der Baskets bleibt damit unverändert.
+
+![](https://raw.githubusercontent.com/stefan-mueller/BBL/master/output/comparison_ratios.jpg)
+
+
 Falls Du Fragen oder Ideen für weitere Analysen hast, zögere bitte nicht, mir zu [schreiben](mailto:mullers@tcd.ie).
