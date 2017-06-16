@@ -38,4 +38,5 @@ Ein paar Anmerkungen zur Berechnung:
 
 * Falls ein Club zwischen 2012 und 2017 den Vereinsnamen geändert hat, wurde die aktuellst Bezeichnung auf alle vergangenen Saisons angewendet. 
 
-Wenn Du Fragen oder Ideen für weitere Analysen hast, zögere bitte nicht, mir zu [schreiben](mailto:mullers@tcd.ie).
+Wenn ich nun die aggregierten Zahlen meiner Berechnung mit denen der Telekom Baskets Bonn vergleiche, fällt auf, dass die Korrelation nicht perfekt ist (dann wären alle Punkte auf der diagonalen gestrichelten Linie). Der Korrelationskoeffizient beträgt 0.85. Bei der Berechnung scheint es also Unterschiede gegeben zu haben. 
+Falls Du Fragen oder Ideen für weitere Analysen hast, zögere bitte nicht, mir zu [schreiben](mailto:mullers@tcd.ie).

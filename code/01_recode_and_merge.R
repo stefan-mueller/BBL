@@ -48,7 +48,7 @@ dta <- dta_raw %>%
 
 ## Rename teams that changed name
 dta <- dta %>% 
-  mutate(club = car::recode(club, "'Neckar RIESEN Ludwigsburg'='MHP RIESEN Ludwigsburg';
+  mutate(club = car::recode(club, "'Neckar RIESEN Ludwigsburg'='MHP RIESEN Ludwigsburg';'EnBW Ludwigsburg'='MHP RIESEN Ludwigsburg';
                             'New Yorker Phantoms Braunschweig'='Basketball Löwen Braunschweig';
                             'LTi GIESSEN 46ers'='GIESSEN 46ers';'Brose Baskets'='Brose Bamberg'; 'BBC Bayreuth'='medi bayreuth';
                             's.Oliver Würzburg'='s.Oliver Baskets'"))
@@ -352,3 +352,28 @@ plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"),
         axis.text = element_text(colour = "black"))
 ggsave(plot_1213, file = "output/ratio_1213.jpg",height = 5, width = 7.5)
 
+## Load ratios reported by Baskets Bonn
+
+dta_baskets <- read.csv("raw_data/ratios_baskets_bonn.csv",
+                        fileEncoding = "utf-8") %>% 
+  select(-club)
+
+## Merge with file that contains my aggregated ratios
+dta_merged <- bind_cols(dta_final_summarised_total, dta_baskets)
+
+## Plot relationship
+
+library(ggrepel)
+ggplot(data = dta_merged, aes(x = stayed_ratio_baskets_bonn, y = stayed_ratio_all)) +
+  geom_abline(slope = 1, colour = "grey20", linetype = 2) +
+  geom_point(alpha = 0.8, size = 2) +
+  geom_text_repel(aes(label = club), size = 2) +
+  scale_x_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
+  scale_y_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
+  xlab("Durcschnitt (berechnet von Baskets Bonn)") +
+  ylab("Durschschnitt (eigene Berechnungen)") +
+  ggtitle("Vergleich der Prozentsatzes der verbliebenen Spieler\n(2012/13–2016/17)") +
+  theme_bw()
+ggsave("output/comparison_ratios.jpg", width = 5, height = 5)
+
+cor.test(dta_merged$stayed_ratio_all, dta_merged$stayed_ratio_baskets_bonn)
