@@ -1,35 +1,39 @@
-# Load packages
+## Load packages
 
 library(tidyverse)
 
-# Load data
+## Load data
 
+# 2016/17
 dta_raw_1617 <- read.csv("raw_data/bbl_2016-17.csv", 
                          header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1617") 
 
+# 2015/16
 dta_raw_1516 <- read.csv("raw_data/bbl_2015-16.csv",
                          header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1516")
 
+# 2014/15
 dta_raw_1415 <- read.csv("raw_data/bbl_2014-15.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1415")
 
+# 2013/14
 dta_raw_1314 <- read.csv("raw_data/bbl_2013-14.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1314")
 
+# 2012/13
 dta_raw_1213 <- read.csv("raw_data/bbl_2012-13.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1213")
 
+# 2011/12
 dta_raw_1112 <- read.csv("raw_data/bbl_2011-12.csv", header = TRUE, fileEncoding = "utf-8") %>% 
   mutate(season = "season1112")
 
 ## Bind datasets
-
 dta_raw <- bind_rows(dta_raw_1617, dta_raw_1516, dta_raw_1415, dta_raw_1314, dta_raw_1213, dta_raw_1112)
 
-head(dta_raw)
-
+## Make some changes regarding the variables (e.g. separate name and team)
 dta <- dta_raw %>%
   separate(player, c("player_new", "club"), sep = "\n", remove = FALSE) %>% 
   separate(player_new, c("name", "position"), sep = "[.]", remove = FALSE) %>% 
@@ -42,8 +46,7 @@ dta <- dta_raw %>%
   unique() %>% 
   select(season, player_season, name, club, games, minutes, points, ef, plusminus)
 
-## Rename teams
-
+## Rename teams that changed name
 dta <- dta %>% 
   mutate(club = car::recode(club, "'Neckar RIESEN Ludwigsburg'='MHP RIESEN Ludwigsburg';
                             'New Yorker Phantoms Braunschweig'='Basketball Löwen Braunschweig';
@@ -52,7 +55,6 @@ dta <- dta %>%
 
 ## Recode names (some players have the same name (and first letter of first name))
 # but are different players in different clubs)
-
 dta <- dta %>% 
   mutate(name = ifelse(name == "ANDERSON K" & club == "Eisbären Bremerhaven", "ANDERSON KYLE",
                        ifelse(name == "GIBSON D" & club == "FRAPORT SKYLINERS", "GIBSON DEVIN",
@@ -60,7 +62,8 @@ dta <- dta %>%
                                      ifelse(name == "SANDERS J" & club == "Telekom Baskets Bonn", "SANDERS JAMARR", name))))) %>% 
   mutate(player_season = paste(name, season, sep = "_"))
 
-dta <- dta[order(dta$player_season, -abs(dta$games) ), ] #sort by id and reverse of abs(value)
+## Sort by player and seson and order descending
+dta <- dta[order(dta$player_season, -abs(dta$games) ), ]
 nrow(dta)
 
 # duplicated <- dta[duplicated(dta[,2]),] %>% 
@@ -68,21 +71,22 @@ nrow(dta)
 # 
 # write.csv(duplicated, "duplicated.csv", fileEncoding = "utf-8")
 
-dta_unique <- dta[ !duplicated(dta$player_season), ] # take the first row within each id
+## Take the observation with most games
+dta_unique <- dta[ !duplicated(dta$player_season), ]
 nrow(dta_unique)
 
 dta_small <- dta_unique %>% 
   select(-player_season) %>% 
   mutate(mpg = as.numeric((minutes/games))) %>% 
-  #select(player_club, season, minutes_per_game) %>% 
-  #mutate(row = 1:nrow(dta)) %>% 
   unique()
 
+## Change from long to wide format
 dta_unique_wide <- dta_small %>% 
   gather(variable, value, -(c(name, season))) %>%
   unite(temp, variable, season, sep = "_") %>%
   spread(temp, value) 
 
+## Recode whether player stayed or left
 dta_stay <- dta_unique_wide %>%
   mutate(stayed_2012 = ifelse(club_season1112 != club_season1213, 0, 1)) %>% 
   mutate(stayed_2013 = ifelse(club_season1213 != club_season1314, 0, 1)) %>% 
@@ -98,6 +102,7 @@ dta_stay <- dta_unique_wide %>%
 ## Select only certain variables
 # http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/
 
+## Transform back to long format
 
 dta_long <- dta_stay %>% 
   tidyr::gather(season_old, club, club_season1112, club_season1213, club_season1314, club_season1415, club_season1516, club_season1617) %>% 
@@ -138,7 +143,7 @@ dta_long <- dta_long %>%
                                  ifelse(season == '2014/15', plusminus_season1415,
                                         ifelse(season == '2015/16', plusminus_season1516, plusminus_season1617)))))))
 
-
+# Calculate stats per game
 dta_long <- dta_long %>% 
   mutate(ppg = round(points/games, 2)) %>% 
   mutate(mpg = round(minutes/games, 2)) %>% 
@@ -149,8 +154,7 @@ dta_long <- dta_long %>%
   filter(minutes > 1) # Keep only players who played during the season
 
 
-## Mark promoted teams
-
+## Mark teams promoted from ProA and exclud them
 dta_final <- dta_long %>% 
   mutate(promoted = ifelse(season == "2016/17" & club == "RASTA Vechta", "yes",
                            ifelse(season == "2016/17" & club == "Science City Jena", "yes",
@@ -165,22 +169,19 @@ dta_final <- dta_long %>%
   select(name, stayed, club:efpg) %>% 
   arrange(season, club) 
 
-## Calculate stay ratio
-
+## Calculate stay ratio based on points and minutes
 dta_final <- dta_final %>% 
   mutate(morethan15mpg = ifelse(mpg > 15, "More than 15 minutes/game", "Less than 15 minutes/game")) %>% 
   mutate(morethan5ppg = ifelse(ppg > 5, "More than 5 points/game", "Less than 5 points/game"))
 
 
 ## Save this dataset
-
 write.csv(dta_final, "data/bbl_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
 
 dta_stayed <- dta_final %>% 
   group_by(club, season) %>% 
   mutate(stayed_ratio = round(100 * (sum(stayed)/n()), 2)) %>% 
   select(club, season, stayed_ratio)
-  
   
 dta_stayed_minutes <- dta_final %>% 
   group_by(club, season) %>% 
@@ -196,18 +197,14 @@ dta_stayed_points <- dta_final %>%
   select(club, season, stayed_ratio_morethan5ppg) %>% 
   unique()
 
-## Left join
-
+## Left join (possibly more elegant solution) and keep unique values
 dta_final_summarised <- left_join(dta_stayed, dta_stayed_points)
-
 dta_final_summarised <- left_join(dta_final_summarised, dta_stayed_minutes)
-
 dta_final_summarised <- dta_final_summarised %>% 
   unique()
 
 
-## Save this dataset
-
+## Save this dataset (ratios per season)
 write.csv(dta_final_summarised, "data/ratios_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
 
 
@@ -220,14 +217,14 @@ dta_final_summarised_total <- dta_final_summarised %>%
   unique()
 
 
-## Save this dataset
-
+## Save this dataset (aggregated ratios)
 write.csv(dta_final_summarised_total, "data/ratios_aggregated.csv", fileEncoding = "utf-8", row.names = FALSE)
+
+## Make plots with ggplot2 
 
 dta_final_summarised_long <- dta_final_summarised %>% 
   tidyr::gather(type_ratio, ratio, stayed_ratio, stayed_ratio_morethan5ppg, stayed_ratio_morethan15mpg) 
   
-
 dta_final_summarised_long_order <- dta_final_summarised_long %>% 
   arrange(season, ratio) %>% 
   mutate(order = row_number())
