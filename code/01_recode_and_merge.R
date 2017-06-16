@@ -368,12 +368,13 @@ ggplot(dta_final_compare_years, aes(x = season, y = mean_type,
   scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
+  geom_hline(yintercept = mean(dta_final_summarised$stayed_ratio)) +
   xlab(NULL) +
   ylab("Prozent") +
   ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler\n(vereinsübergreifend pro Saison)") +
   theme_bw() +
   theme(legend.position = "bottom")
-ggsave("output/comparison_per_season.jpg", height = 5, width = 7.5)
+ggsave("output/comparison_per_season.jpg", height = 9, width = 10)
 
 ## Load ratios reported by Baskets Bonn
 
