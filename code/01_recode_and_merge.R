@@ -374,7 +374,7 @@ ggplot(dta_final_compare_years, aes(x = season, y = mean_type,
   ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler\n(vereinsübergreifend pro Saison)") +
   theme_bw() +
   theme(legend.position = "bottom")
-ggsave("output/comparison_per_season.jpg", height = 9, width = 10)
+ggsave("output/comparison_per_season.jpg", height = 5, width = 7.5)
 
 ## Load ratios reported by Baskets Bonn
 
