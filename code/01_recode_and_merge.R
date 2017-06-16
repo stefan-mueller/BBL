@@ -53,6 +53,12 @@ dta <- dta %>%
 dta <- dta[order(dta$player_season, -abs(dta$games) ), ] #sort by id and reverse of abs(value)
 nrow(dta)
 
+dta_duplicated <- unique( dta[ , 2] )
+  
+duplicated <- dta[duplicated(dta[,2]),] %>% 
+  arrange(name)
+
+
 dta_unique <- dta[ !duplicated(dta$player_season), ]              # take the first row within each id
 nrow(dta_unique)
 
