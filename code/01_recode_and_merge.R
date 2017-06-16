@@ -394,7 +394,7 @@ ggplot(data = dta_merged, aes(x = stayed_ratio_baskets_bonn, y = stayed_ratio_al
   geom_text_repel(aes(label = club), size = 4) +
   scale_x_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
   scale_y_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
-  xlab("Durcschnitt (berechnet von Baskets Bonn)") +
+  xlab("Durchschnitt (berechnet von Baskets Bonn)") +
   ylab("Durchschnitt (eigene Berechnungen)") +
   ggtitle("Vergleich der Prozentsatzes der verbliebenen Spieler\n(2012/13 bis 2016/17)") +
   theme_bw()
