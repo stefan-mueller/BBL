@@ -4,4 +4,11 @@ Die [Telekom Baskets Bonn](https://www.telekom-baskets-bonn.de) veröffentlichte
 
 Ich habe diese Zahlen versucht zu repliziert und außerdem zu berechnen, wie hoch der Anteil der verbliebenen Spieler ist, die im Schnitt über zehn Minuten pro Spiel gespielt haben oder mehr als fünf Punkte erzielt haben.
 
-Diese Repository beinhaltet alle Rohdaten und Scripts, die für die Berechnung der Zahlen notwendig sind. Kommentare und Hinweise auf mögliche Fehler sind jederzeit willkommen. Schreibt mir einfach eine [E-Mail](mailto:mullers@tcd.ie).
+Dieses Repository beinhaltet die genutzen [Rohdaten](raw_data), webscraped von der [BBL-Website](http://easycredit-bbl.de), das [Skript](code/01_recode_and_merge), das für die Umwandlung und Berechnungen geschrieben wurde und den finalen [Datensatz](data/beko_bbl_2012-2017) auf der Ebene von Spieler und Saison. Kommentare und Hinweise auf mögliche Fehler sind jederzeit willkommen. Schreibt mir einfach eine [E-Mail](mailto:mullers@tcd.ie).
+
+Ein paar Anmerkungen zur Berechnung:
+
+![Prozentualer Anteil von verbliebenen Spielern, aggregiert](output/ratio_total.jpg)
+
+![Prozentualer Anteil von verbliebenenen Spielern pro Saison](output/ratio_season.jpg)
+
