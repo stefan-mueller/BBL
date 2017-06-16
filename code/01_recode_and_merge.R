@@ -214,7 +214,7 @@ dta_final_summarised_long$club <- factor(dta_final_summarised_long$club,
 
 ggplot(dta_final_summarised_long, aes(x = club, y = ratio, order = ratio, colour = factor(type_ratio))) +
   geom_point() +
-  scale_y_continuous(limits = c(0, 80), breaks = c(seq(0, 80, by = 20))) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 20))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">10 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   facet_wrap(~season, scales = "free", nrow = 4) +
   coord_flip() +
@@ -232,7 +232,7 @@ dta_final_summarised_long_total <- dta_final_summarised_total %>%
 
 ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
   geom_point(alpha = 0.7, size = 2) +
-  scale_y_continuous(limits = c(0, 70), breaks = c(seq(0, 70, by = 10))) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
   coord_flip() +
   ylab("Prozent") +
@@ -244,3 +244,76 @@ ggplot(dta_final_summarised_long_total, aes(reorder(x = club, ratio), y = ratio,
 ggsave("output/ratio_total.jpg", height = 5, width = 8)
 
 
+
+plot_1617 <- ggplot(filter(dta_final_summarised_long, season == "2016/17"), 
+       aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
+  geom_point(alpha = 0.7, size = 2) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
+  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  coord_flip() +
+  ylab("Prozent") +
+  xlab(NULL) +
+  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2016/17)") +
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text = element_text(colour = "black"))
+
+plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"), 
+                    aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
+  geom_point(alpha = 0.7, size = 2) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
+  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  coord_flip() +
+  ylab("Prozent") +
+  xlab(NULL) +
+  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2015/16)") +
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text = element_text(colour = "black"))
+
+plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"), 
+                    aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
+  geom_point(alpha = 0.7, size = 2) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
+  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  coord_flip() +
+  ylab("Prozent") +
+  xlab(NULL) +
+  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2014/15)") +
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text = element_text(colour = "black"))
+
+
+plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"), 
+                    aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
+  geom_point(alpha = 0.7, size = 2) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
+  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  coord_flip() +
+  ylab("Prozent") +
+  xlab(NULL) +
+  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2013/14)") +
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text = element_text(colour = "black"))
+
+
+plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"), 
+                    aes(reorder(x = club, ratio), y = ratio, colour = type_ratio)) +
+  geom_point(alpha = 0.7, size = 2) +
+  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
+  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  coord_flip() +
+  ylab("Prozent") +
+  xlab(NULL) +
+  ggtitle("Prozentualer Anteil der im Kader verbliebenen eingesetzten Spieler (2012/13)") +
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text = element_text(colour = "black"))
+
+pdf("ratio_season_detailed.pdf", width = 10, height = 20)
+gridExtra::grid.arrange(plot_1617, plot_1516,
+                        plot_1415, plot_1314,
+                        plot_1213, ncol = 1)
+dev.off()
