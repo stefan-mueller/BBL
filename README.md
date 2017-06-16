@@ -11,7 +11,7 @@ Interessanterweise weichen meine Zahlen von denen der Baskets ab (s. Anmerkungen
 
 ![Prozentualer Anteil von verbliebenen Spielern, aggregiert](output/ratio_total.jpg)
 
-![Prozentualer Anteil von verbliebenenen Spielern pro Saison](output/ratio_season.jpg)
+![Prozentualer Anteil von verbliebenenen Spielern pro Saison](output/ratio_season_detailed.pdf)
 
 Ein paar Anmerkungen zur Berechnung:
 * Es sind lediglich Spieler einbezogen, die über die ganze Saison hinweg mindestens eine Minute auf dem Feld standen.
