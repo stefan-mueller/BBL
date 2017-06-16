@@ -163,21 +163,21 @@ write.csv(dta_final, "data/bbl_2012-2017.csv", fileEncoding = "utf-8", row.names
 
 dta_stayed <- dta_final %>% 
   group_by(club, season) %>% 
-  mutate(stayed_ratio = 100 * (sum(stayed)/n())) %>% 
+  mutate(stayed_ratio = round(100 * (sum(stayed)/n()), 2)) %>% 
   select(club, season, stayed_ratio)
   
   
 dta_stayed_minutes <- dta_final %>% 
   group_by(club, season) %>% 
   filter(morethan15mpg == "More than 15 minutes/game") %>% 
-  mutate(stayed_ratio_morethan15mpg = 100 * (sum(stayed)/n())) %>% 
+  mutate(stayed_ratio_morethan15mpg = round(100 * (sum(stayed)/n()), 2)) %>% 
   select(club, season, stayed_ratio_morethan15mpg) %>% 
   unique()
 
 dta_stayed_points <- dta_final %>% 
   group_by(club, season) %>% 
   filter(morethan5ppg == "More than 5 points/game") %>% 
-  mutate(stayed_ratio_morethan5ppg = 100 * (sum(stayed)/n()))%>% 
+  mutate(stayed_ratio_morethan5ppg = round(100 * (sum(stayed)/n()), 2)) %>% 
   select(club, season, stayed_ratio_morethan5ppg) %>% 
   unique()
 
@@ -188,8 +188,13 @@ dta_final_summarised <- left_join(dta_stayed, dta_stayed_points)
 dta_final_summarised <- left_join(dta_final_summarised, dta_stayed_minutes)
 
 dta_final_summarised <- dta_final_summarised %>% 
-  unique() %>% 
-  mutate(club_season = paste(season, club))
+  unique()
+
+
+## Save this dataset
+
+write.csv(dta_final_summarised, "data/ratios_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
+
 
 dta_final_summarised_total <- dta_final_summarised %>% 
   group_by(club) %>% 
