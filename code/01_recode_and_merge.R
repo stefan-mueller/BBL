@@ -260,7 +260,7 @@ dta_final_summarised_long <- dta_final_summarised %>%
          stayed_ratio_morethan15mpg, players_stayed,
          players_stayed_morethan5ppg, players_stayed_morethan15mpg) %>% 
   tidyr::gather(type_ratio, ratio, stayed_ratio, stayed_ratio_morethan5ppg, stayed_ratio_morethan15mpg)  %>% 
-  mutate(Gehalten = ifelse(type_ratio == "stayed_ratio", players_stayed,
+  mutate(Verblieben = ifelse(type_ratio == "stayed_ratio", players_stayed,
                            ifelse(type_ratio == "stayed_ratio_morethan5ppg", players_stayed_morethan5ppg, players_stayed_morethan15mpg))) %>% 
   select(-c(players_stayed, players_stayed_morethan5ppg, players_stayed_morethan15mpg)) %>% 
   mutate(type_ratio = car::recode(type_ratio, "'stayed_ratio'='Total';
@@ -361,13 +361,14 @@ plot_teams <- ggplot(dta_clubs, aes(x = ratio, y = season,
                       colour = type_ratio,
                       shape = type_ratio)) + 
   geom_vline(aes(xintercept = mean_ratio, group = club, color = type_ratio), alpha = 0.4) +
-  geom_jitter(width = 3, height = 0, alpha = 0.7, size = 2) +
+  geom_jitter(width = 2, height = 0, alpha = 0.7, size = 2) +
   scale_colour_manual(name = NULL, values = c("darkgreen", "blue", "red")) +
   scale_shape_manual(name = NULL, values = c(8, 17, 16)) +
   facet_wrap(~club, ncol = 4) +
+  scale_x_continuous(limits = c(-3, 100)) +
   ylab(NULL) +
   xlab("Prozent") +
-  ggtitle("Anteil verbliebener Spieler\n(vertikale Linien markieren den Durschnitt pro Team von 2012/13 bis 2016/17)") +
+  ggtitle("Anteil verbliebener Spieler\n(vertikale Linien markieren den Durchschnitt pro Team von 2012/13 bis 2016/17)") +
   theme_custom()
 ggsave(plot_teams, file = "output/plot_teams.jpg", width = 8, height = 7.5)
 

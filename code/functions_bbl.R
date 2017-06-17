@@ -35,7 +35,7 @@ get_season_plot <- function(which_season, save){
                  aes(y = club, x = ratio, 
                      colour = type_ratio, 
                      shape = type_ratio, 
-                     key = Gehalten)) +
+                     key = Verblieben)) +
     geom_jitter(alpha = 0.6, size = 3, height = 0, width = 3) +
     scale_x_continuous(limits = c(-5, 90), breaks = c(seq(0, 90, by = 10))) +
     #scale_shape_discrete(name = NULL) +
@@ -59,11 +59,11 @@ get_season_plot <- function(which_season, save){
   Sys.setenv("plotly_username"="stefan-mueller")
   Sys.setenv("plotly_api_key"="oOlCBQGmMIQkobHjOREr")
   
-  ggplot_1617_ly <- plot + theme(legend.justification=c(0,0), legend.position=c(0,0))
-  
-  plotly_1617 <- ggplotly(ggplot_1617_ly, autosize = F, width = 800, height = 600, 
+  plot_plotly <- ggplotly(plot, autosize = F, width = 800, height = 600, 
                           margin = m, tooltip = "Gehalten")
-  # api_create(plotly_1617, filename = paste("plot_bbl_stayed_", save), 
+  # api_create(plotly, filename = paste("plot_bbl_stayed_", save), 
   #            sharing = "public")
-  
+  print(plot_plotly)
 }
+
+get_season_plot(which_season = "2016/17", save = "1617")
