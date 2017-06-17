@@ -41,7 +41,7 @@ get_season_plot <- function(which_season, save){
     #scale_shape_discrete(name = NULL) +
     #scale_color_discrete(name = NULL) +
     scale_colour_manual(name = NULL, values = c("darkgreen", "blue", "red")) +
-    scale_shape_manual(name = NULL, values = c(8, 4, 16)) +
+    scale_shape_manual(name = NULL, values = c(8, 2, 16)) +
     # http://sape.inf.usi.ch/quick-reference/ggplot2/shape
     xlab("Prozent") +
     ylab(NULL) +

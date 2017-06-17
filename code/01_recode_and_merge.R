@@ -281,7 +281,7 @@ ggplot(dta_final_summarised_long_total,
   geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
   scale_colour_manual(name = NULL, values = c("darkgreen", "blue", "red")) +
-  scale_shape_manual(name = NULL, values = c(8, 4, 16)) +
+  scale_shape_manual(name = NULL, values = c(8, 2, 16)) +
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
@@ -294,6 +294,7 @@ ggsave("output/ratio_total.jpg", height = 6, width = 7.5)
 
 
 ## Create plots per season
+# based on dta_final_summarised_long
 
 get_season_plot(which_season = "2016/17", save = "1617")
 get_season_plot(which_season = "2015/16", save = "1516")
@@ -350,5 +351,24 @@ ggplot(data = dta_merged, aes(x = stayed_ratio_baskets_bonn, y = stayed_ratio_al
   theme_custom()
 ggsave("output/comparison_ratios.jpg", width = 7.5, height = 7.5)
 
+# Calclate mean total ratio by team
+
+dta_clubs <- dta_final_summarised_long %>% 
+  group_by(club, type_ratio) %>%
+  mutate(mean_ratio = mean(ratio))
+
+plot_teams <- ggplot(dta_clubs, aes(x = ratio, y = season, 
+                      colour = type_ratio,
+                      shape = type_ratio)) + 
+  geom_jitter(width = 3, height = 0) +
+  geom_vline(aes(xintercept = mean_ratio, group = club, color = type_ratio), alpha = 0.6) +
+  scale_colour_manual(name = NULL, values = c("darkgreen", "blue", "red")) +
+  scale_shape_manual(name = NULL, values = c(8, 2, 16)) +
+  facet_wrap(~club, ncol = 4) +
+  ylab(NULL) +
+  xlab("Prozent") +
+  ggtitle("Anteil verbliebener Spieler\n(vertikale Linien markieren den Durschnitt pro Team von 2012/13 bis 2016/17)") +
+  theme_custom()
+ggsave(plot_teams, file = "output/plot_teams.jpg", width = 8, height = 7.5)
 
 cor.test(dta_merged$stayed_ratio_all, dta_merged$stayed_ratio_baskets_bonn)
