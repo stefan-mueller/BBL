@@ -360,10 +360,10 @@ dta_clubs <- dta_final_summarised_long %>%
 plot_teams <- ggplot(dta_clubs, aes(x = ratio, y = season, 
                       colour = type_ratio,
                       shape = type_ratio)) + 
-  geom_jitter(width = 3, height = 0) +
-  geom_vline(aes(xintercept = mean_ratio, group = club, color = type_ratio), alpha = 0.6) +
+  geom_vline(aes(xintercept = mean_ratio, group = club, color = type_ratio), alpha = 0.4) +
+  geom_jitter(width = 3, height = 0, alpha = 0.7, size = 2) +
   scale_colour_manual(name = NULL, values = c("darkgreen", "blue", "red")) +
-  scale_shape_manual(name = NULL, values = c(8, 2, 16)) +
+  scale_shape_manual(name = NULL, values = c(8, 17, 16)) +
   facet_wrap(~club, ncol = 4) +
   ylab(NULL) +
   xlab("Prozent") +
