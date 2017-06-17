@@ -1,83 +1,82 @@
-"club","season","stayed_ratio","stayed_ratio_morethan5ppg","stayed_ratio_morethan15mpg"
-"ALBA BERLIN","2012/13",37.5,27.27,27.27
-"Artland Dragons","2012/13",31.25,18.18,27.27
-"Basketball Löwen Braunschweig","2012/13",37.5,27.27,36.36
-"Brose Bamberg","2012/13",37.5,27.27,25
-"Eisbären Bremerhaven","2012/13",33.33,11.11,11.11
-"EWE Baskets Oldenburg","2012/13",53.85,50,50
-"FC Bayern München","2012/13",57.14,55.56,55.56
-"FRAPORT SKYLINERS","2012/13",25,20,27.27
-"GIESSEN 46ers","2012/13",22.22,20,20
-"medi bayreuth","2012/13",46.15,37.5,33.33
-"MHP RIESEN Ludwigsburg","2012/13",16.67,0,0
-"Phoenix Hagen","2012/13",25,14.29,14.29
-"ratiopharm ulm","2012/13",46.67,45.45,55.56
-"s.Oliver Baskets","2012/13",40,36.36,36.36
-"TBB Trier","2012/13",33.33,28.57,25
-"Telekom Baskets Bonn","2012/13",46.67,44.44,44.44
-"WALTER Tigers Tübingen","2012/13",50,57.14,57.14
-"ALBA BERLIN","2013/14",13.33,0,0
-"Artland Dragons","2013/14",30.77,14.29,12.5
-"Basketball Löwen Braunschweig","2013/14",29.41,28.57,28.57
-"Brose Bamberg","2013/14",50,40,41.67
-"Eisbären Bremerhaven","2013/14",31.25,25,22.22
-"EWE Baskets Oldenburg","2013/14",66.67,66.67,75
-"FC Bayern München","2013/14",30.77,18.18,18.18
-"FRAPORT SKYLINERS","2013/14",50,45.45,45.45
-"medi bayreuth","2013/14",57.14,33.33,44.44
-"MHP RIESEN Ludwigsburg","2013/14",13.33,0,0
-"Mitteldeutscher BC","2013/14",25,25,25
-"Phoenix Hagen","2013/14",50,66.67,66.67
-"ratiopharm ulm","2013/14",40,40,40
-"s.Oliver Baskets","2013/14",43.75,41.67,46.15
-"TBB Trier","2013/14",38.46,42.86,50
-"Telekom Baskets Bonn","2013/14",42.86,42.86,44.44
-"WALTER Tigers Tübingen","2013/14",35.71,22.22,20
-"ALBA BERLIN","2014/15",53.85,55.56,55.56
-"Artland Dragons","2014/15",57.14,60,70
-"Basketball Löwen Braunschweig","2014/15",46.15,28.57,28.57
-"Brose Bamberg","2014/15",26.67,10,20
-"Eisbären Bremerhaven","2014/15",26.67,14.29,12.5
-"EWE Baskets Oldenburg","2014/15",61.54,75,71.43
-"FC Bayern München","2014/15",53.33,45.45,50
-"FRAPORT SKYLINERS","2014/15",55.56,50,55.56
-"medi bayreuth","2014/15",41.67,37.5,37.5
-"MHP RIESEN Ludwigsburg","2014/15",45.45,42.86,42.86
-"Mitteldeutscher BC","2014/15",25,28.57,28.57
-"Phoenix Hagen","2014/15",53.85,57.14,71.43
-"ratiopharm ulm","2014/15",38.46,37.5,37.5
-"TBB Trier","2014/15",57.14,57.14,62.5
-"Telekom Baskets Bonn","2014/15",57.14,44.44,62.5
-"WALTER Tigers Tübingen","2014/15",46.15,50,44.44
-"ALBA BERLIN","2015/16",35.71,12.5,22.22
-"Basketball Löwen Braunschweig","2015/16",38.46,12.5,12.5
-"BG Göttingen","2015/16",53.85,62.5,62.5
-"Brose Bamberg","2015/16",46.67,45.45,40
-"Crailsheim Merlins","2015/16",6.67,0,0
-"Eisbären Bremerhaven","2015/16",18.18,28.57,25
-"EWE Baskets Oldenburg","2015/16",46.15,44.44,50
-"FC Bayern München","2015/16",41.18,54.55,54.55
-"FRAPORT SKYLINERS","2015/16",70.59,66.67,66.67
-"medi bayreuth","2015/16",15.38,0,0
-"MHP RIESEN Ludwigsburg","2015/16",38.46,40,50
-"Mitteldeutscher BC","2015/16",16.67,12.5,14.29
-"Phoenix Hagen","2015/16",38.46,25,25
-"ratiopharm ulm","2015/16",14.29,12.5,12.5
-"Telekom Baskets Bonn","2015/16",50,44.44,41.67
-"WALTER Tigers Tübingen","2015/16",46.15,37.5,33.33
-"ALBA BERLIN","2016/17",37.5,30,33.33
-"Basketball Löwen Braunschweig","2016/17",23.08,14.29,22.22
-"BG Göttingen","2016/17",30.77,12.5,12.5
-"Brose Bamberg","2016/17",58.82,64.29,66.67
-"Eisbären Bremerhaven","2016/17",12.5,22.22,22.22
-"EWE Baskets Oldenburg","2016/17",64.29,71.43,71.43
-"FC Bayern München","2016/17",33.33,40,36.36
-"FRAPORT SKYLINERS","2016/17",54.55,50,40
-"GIESSEN 46ers","2016/17",15.38,14.29,14.29
-"medi bayreuth","2016/17",33.33,25,37.5
-"MHP RIESEN Ludwigsburg","2016/17",28.57,22.22,30
-"Phoenix Hagen","2016/17",0,0,0
-"ratiopharm ulm","2016/17",52.94,66.67,60
-"s.Oliver Baskets","2016/17",31.25,42.86,40
-"Telekom Baskets Bonn","2016/17",14.29,0,0
-"WALTER Tigers Tübingen","2016/17",25,12.5,12.5
+"club","season","stayed_ratio","players_stayed","stayed_ratio_morethan5ppg","players_stayed_morethan5ppg","stayed_ratio_morethan15mpg","players_stayed_morethan15mpg"
+"ALBA BERLIN","2012/13",37.5,"Fülle, Idbihi, Ney, Schaffartzik, Schultze, Wood",27.27,"Idbihi, Schaffartzik, Wood",27.27,"Idbihi, Schaffartzik, Wood"
+"Artland Dragons","2012/13",31.25,"Grünheid, Hoffmann, King Antho, Njei, Strasser",18.18,"King Antho, Strasser",27.27,"Grünheid, King Antho, Strasser"
+"Basketball Löwen Braunschweig","2012/13",37.5,"Gertz, Kulawick, Mcelroy, Mittmann, Schneiders, Schröder",27.27,"Mcelroy, Schneiders, Schröder",36.36,"Gertz, Mcelroy, Mittmann, Schröder"
+"Brose Bamberg","2012/13",37.5,"Gavel, Jacobsen, Neumann, Richter, Schmidt, Tadda",27.27,"Gavel, Jacobsen, Neumann",25,"Gavel, Jacobsen, Tadda"
+"Eisbären Bremerhaven","2012/13",33.33,"Canty, El Domiaty, Everett, Malu, Raffington",11.11,"Everett",11.11,"Everett"
+"EWE Baskets Oldenburg","2012/13",53.85,"Bahiense De Mello, Burrell, Chubb, Freese, Paulding, Smeulders, Smit",50,"Burrell, Chubb, Paulding, Smeulders",50,"Burrell, Chubb, Paulding, Smeulders"
+"FC Bayern München","2012/13",57.14,"Benzing, Greene, Hamann, Homan, Jagla, Nadjfeji, Radosavljevic, Troutman",55.56,"Benzing, Hamann, Homan, Jagla, Troutman",55.56,"Benzing, Hamann, Homan, Jagla, Troutman"
+"FRAPORT SKYLINERS","2012/13",25,"Barthel, Gibson Dev, Nolte, Robertson",20,"Gibson Dev, Robertson",27.27,"Barthel, Gibson Dev, Robertson"
+"GIESSEN 46ers","2012/13",22.22,"Ovcina, Turudic, Weiser, Zazai",20,"Ovcina, Zazai",20,"Ovcina, Zazai"
+"medi bayreuth","2012/13",46.15,"Hamilton, Schmidt, Schmitz, Spöler, Wyrick, Zeis",37.5,"Hamilton, Schmitz, Wyrick",33.33,"Hamilton, Schmitz, Wyrick"
+"MHP RIESEN Ludwigsburg","2012/13",16.67,"Bekteshi, Hadzovic, Koch",0,"Niemand",0,"Niemand"
+"Phoenix Hagen","2012/13",25,"Kramer, Kruel, White",14.29,"White",14.29,"White"
+"ratiopharm ulm","2012/13",46.67,"Betz, Bryant, Esterkamp, Günther, Heberlein, Nankivil, Watts",45.45,"Bryant, Esterkamp, Günther, Nankivil, Watts",55.56,"Bryant, Esterkamp, Günther, Nankivil, Watts"
+"s.Oliver Baskets","2012/13",40,"Boone, Clay, Henneberger, Jacobson, King, Little",36.36,"Boone, Jacobson, King, Little",36.36,"Boone, Jacobson, King, Little"
+"TBB Trier","2012/13",33.33,"Dojcin, Linhart, Saibou, Seiferth",28.57,"Linhart, Seiferth",25,"Linhart, Seiferth"
+"Telekom Baskets Bonn","2012/13",46.67,"Ensminger, Jordan, Koch, Mangold, Thülig, Veikalas, Wohlfarth-Bottermann",44.44,"Ensminger, Jordan, Veikalas, Wohlfarth-Bottermann",44.44,"Ensminger, Jordan, Mangold, Veikalas"
+"WALTER Tigers Tübingen","2012/13",50,"Albus, Duggins, Nash, Redding, Spoden, Young",57.14,"Duggins, Nash, Redding, Young",57.14,"Duggins, Nash, Redding, Young"
+"ALBA BERLIN","2013/14",13.33,"Fülle, Schultze",0,"Niemand",0,"Niemand"
+"Artland Dragons","2013/14",30.77,"Grünheid, Hoffmann, King Antho, Njei",14.29,"King Antho",12.5,"King Antho"
+"Basketball Löwen Braunschweig","2013/14",29.41,"Gertz, Kulawick, Land, Mcelroy, Nana",28.57,"Mcelroy, Nana",28.57,"Mcelroy, Nana"
+"Brose Bamberg","2013/14",50,"Ford, Gavel, Goldsberry, Jacobsen, Rockmann, Schmidt, Tadda, Zirbes",40,"Ford, Gavel, Jacobsen, Zirbes",41.67,"Ford, Gavel, Goldsberry, Jacobsen, Zirbes"
+"Eisbären Bremerhaven","2013/14",31.25,"El Domiaty, Jackson, Kone, Malu, Zwiener",25,"Jackson, Zwiener",22.22,"Jackson, Zwiener"
+"EWE Baskets Oldenburg","2013/14",66.67,"Bahiense De Mello, Chubb, Freese, Jenkins, Joyce, Kramer, Paulding, Smeulders, Smit, Wysocki",66.67,"Chubb, Jenkins, Joyce, Kramer, Paulding, Smeulders",75,"Chubb, Jenkins, Joyce, Kramer, Paulding, Smeulders"
+"FC Bayern München","2013/14",30.77,"Benzing, Hamann, Troutman, Zipser",18.18,"Benzing, Troutman",18.18,"Benzing, Troutman"
+"FRAPORT SKYLINERS","2013/14",50,"Barthel, Klein, Merz, Nolte, Novak, Oldenburg, Robertson, Robinson, Voigtmann",45.45,"Barthel, Klein, Robertson, Robinson, Voigtmann",45.45,"Barthel, Klein, Robertson, Robinson, Voigtmann"
+"medi bayreuth","2013/14",57.14,"Bailey, Chambers, Hamilton, Schmitz, Simon, Spöler, Wyrick, Zeis",33.33,"Bailey, Hamilton, Simon",44.44,"Bailey, Hamilton, Simon, Wyrick"
+"MHP RIESEN Ludwigsburg","2013/14",13.33,"Joos, Koch",0,"Niemand",0,"Niemand"
+"Mitteldeutscher BC","2013/14",25,"Leutloff, Pantelic, Schwarz",25,"Pantelic, Schwarz",25,"Pantelic, Schwarz"
+"Phoenix Hagen","2013/14",50,"Bell, Bleck, Dorris, Gordon, Gregory, Kruel, Wendt",66.67,"Bell, Dorris, Gordon, Gregory",66.67,"Bell, Dorris, Gordon, Gregory"
+"ratiopharm ulm","2013/14",40,"Gausa, Günther, Jönke, Nankivil, Schwethelm, Theis",40,"Günther, Nankivil, Schwethelm, Theis",40,"Günther, Nankivil, Schwethelm, Theis"
+"s.Oliver Baskets","2013/14",43.75,"Boone, Jacobson, Little, Mckinney, Mcnaughton, Stuckey, Ugrai",41.67,"Boone, Little, Mckinney, Mcnaughton, Stuckey",46.15,"Boone, Jacobson, Little, Mckinney, Mcnaughton, Stuckey"
+"TBB Trier","2013/14",38.46,"Bucknor, Buntic, Chikoko, Mönninghoff, Seiferth",42.86,"Bucknor, Chikoko, Seiferth",50,"Bucknor, Chikoko, Mönninghoff, Seiferth"
+"Telekom Baskets Bonn","2013/14",42.86,"Jordan, Koch, Mangold, Mccray, Mclean, Veikalas",42.86,"Jordan, Mclean, Veikalas",44.44,"Jordan, Mangold, Mclean, Veikalas"
+"WALTER Tigers Tübingen","2013/14",35.71,"Albus, Lischka, Nash, Oehle, Young",22.22,"Nash, Young",20,"Nash, Young"
+"ALBA BERLIN","2014/15",53.85,"Akpinar, Hammonds, King, Radosevic, Redding, Vargas, Wohlfarth-Bottermann",55.56,"Hammonds, King, Radosevic, Redding, Vargas",55.56,"Hammonds, King, Radosevic, Redding, Vargas"
+"Artland Dragons","2014/15",57.14,"Doreth, Frease, Graves, Grünheid, Hill, Holston, King Antho, Thomas",60,"Frease, Graves, Hill, Holston, King Antho, Thomas",70,"Doreth, Frease, Graves, Hill, Holston, King Antho, Thomas"
+"Basketball Löwen Braunschweig","2014/15",46.15,"Bogdanov, Gertz, Johnson, Mcelroy, Pluskota, Visser",28.57,"Mcelroy, Visser",28.57,"Mcelroy, Visser"
+"Brose Bamberg","2014/15",26.67,"Harris, Schmidt, Tadda, Thiemann",10,"Harris",20,"Harris, Tadda"
+"Eisbären Bremerhaven","2014/15",26.67,"Baues, El Domiaty, Schneiders, Searcy",14.29,"Searcy",12.5,"Searcy"
+"EWE Baskets Oldenburg","2014/15",61.54,"Aleksandrov, Chubb, Jenkins, Kramer, Lockhart, Neumann, Paulding, Smeulders",75,"Aleksandrov, Chubb, Jenkins, Kramer, Neumann, Paulding",71.43,"Aleksandrov, Chubb, Jenkins, Kramer, Paulding"
+"FC Bayern München","2014/15",53.33,"Benzing, Bryant, Djedovic, Idbihi, Schaffartzik, Staiger, Taylor, Zipser",45.45,"Benzing, Bryant, Djedovic, Schaffartzik, Taylor",50,"Benzing, Bryant, Djedovic, Schaffartzik, Taylor"
+"FRAPORT SKYLINERS","2014/15",55.56,"Barthel, Bright, Burtschi, Ilzhöfer, Klein, Merz, Oldenburg, Richter, Robertson, Voigtmann",50,"Barthel, Burtschi, Klein, Robertson, Voigtmann",55.56,"Barthel, Burtschi, Klein, Robertson, Voigtmann"
+"medi bayreuth","2014/15",41.67,"Bailey, Burrell, Heyden, Schmitz, Zeis",37.5,"Bailey, Burrell, Heyden",37.5,"Bailey, Burrell, Heyden"
+"MHP RIESEN Ludwigsburg","2014/15",45.45,"Flomo, Huff, Koch, Stockton, Waleskowski",42.86,"Huff, Stockton, Waleskowski",42.86,"Huff, Stockton, Waleskowski"
+"Mitteldeutscher BC","2014/15",25,"Clay, Pantelic, Schwarz",28.57,"Pantelic, Schwarz",28.57,"Pantelic, Schwarz"
+"Phoenix Hagen","2014/15",53.85,"Bell, Bleck, Geske, Gordon, Gregory, Krume, Ramsey",57.14,"Bell, Gordon, Gregory, Ramsey",71.43,"Bell, Geske, Gordon, Gregory, Ramsey"
+"ratiopharm ulm","2014/15",38.46,"Clyburn, Günther, Hess, Maier, Schwethelm",37.5,"Clyburn, Günther, Schwethelm",37.5,"Clyburn, Günther, Schwethelm"
+"TBB Trier","2014/15",57.14,"Anderson, Bucknor, Canty, Dahlem, Mönninghoff, Samenas, Schmidt, Wenzl",57.14,"Anderson, Bucknor, Mönninghoff, Samenas",62.5,"Anderson, Bucknor, Mönninghoff, Samenas, Schmidt"
+"Telekom Baskets Bonn","2014/15",57.14,"Blass, Brooks, Koch, Lawrence, Mangold, Michel, Veikalas, Wachalski",44.44,"Brooks, Lawrence, Veikalas, Wachalski",62.5,"Brooks, Lawrence, Mangold, Veikalas, Wachalski"
+"WALTER Tigers Tübingen","2014/15",46.15,"Albus, Kashirov, Nadjfeji, Radosavljevic, Ratkovica, Wallace",50,"Kashirov, Nadjfeji, Radosavljevic, Ratkovica, Wallace",44.44,"Nadjfeji, Radosavljevic, Ratkovica, Wallace"
+"ALBA BERLIN","2015/16",35.71,"Akpinar, Giffey, King, Vargas, Wohlfarth-Bottermann",12.5,"Giffey",22.22,"Giffey, King"
+"Basketball Löwen Braunschweig","2015/16",38.46,"Adler, Bogdanov, Gertz, Simon, Theis",12.5,"Simon",12.5,"Simon"
+"BG Göttingen","2015/16",53.85,"Boakye, El-Amin, Godbold, Kamp, Kulawick, Onwuegbuzie, Spohr",62.5,"El-Amin, Godbold, Kamp, Kulawick, Spohr",62.5,"El-Amin, Godbold, Kamp, Kulawick, Spohr"
+"Brose Bamberg","2015/16",46.67,"Harris, Miller, Obst, Schmidt, Strelnieks, Theis, Wanamaker",45.45,"Harris, Miller, Strelnieks, Theis, Wanamaker",40,"Miller, Strelnieks, Theis, Wanamaker"
+"Crailsheim Merlins","2015/16",6.67,"Carpenter",0,"Niemand",0,"Niemand"
+"Eisbären Bremerhaven","2015/16",18.18,"Smith, Williams",28.57,"Smith, Williams",25,"Smith, Williams"
+"EWE Baskets Oldenburg","2015/16",46.15,"Aleksandrov, Kramer, Lockhart, Paulding, Smeulders, Wimberg",44.44,"Aleksandrov, Kramer, Paulding, Smeulders",50,"Aleksandrov, Kramer, Paulding, Smeulders"
+"FC Bayern München","2015/16",41.18,"Bryant, Djedovic, Gavel, Mayr, Savanovic, Taylor, Zipser",54.55,"Bryant, Djedovic, Gavel, Savanovic, Taylor, Zipser",54.55,"Bryant, Djedovic, Gavel, Savanovic, Taylor, Zipser"
+"FRAPORT SKYLINERS","2015/16",70.59,"Barthel, Doornekamp, Ilzhöfer, Kiel, Klein, Merz, Morrison, Okeke, Oldenburg, Richter, Robertson, Voigtmann",66.67,"Barthel, Doornekamp, Klein, Morrison, Robertson, Voigtmann",66.67,"Barthel, Doornekamp, Klein, Morrison, Robertson, Voigtmann"
+"medi bayreuth","2015/16",15.38,"Adler, Heyden",0,"Niemand",0,"Niemand"
+"MHP RIESEN Ludwigsburg","2015/16",38.46,"Brockman, Huff, Johnson, Mcnaughton, Waleskowski",40,"Brockman, Huff, Johnson, Waleskowski",50,"Brockman, Huff, Johnson, Waleskowski"
+"Mitteldeutscher BC","2015/16",16.67,"Massenat, Zinn",12.5,"Massenat",14.29,"Massenat"
+"Phoenix Hagen","2015/16",38.46,"Bell, Geske, Grof, Keßen, Krume",25,"Bell, Geske",25,"Bell, Geske"
+"ratiopharm ulm","2015/16",14.29,"Ferner, Günther",12.5,"Günther",12.5,"Günther"
+"Telekom Baskets Bonn","2015/16",50,"Blass, Klimavicius, Koch, Lawrence, Lodders, Mädrich, Mangold",44.44,"Klimavicius, Koch, Lawrence, Mädrich",41.67,"Klimavicius, Koch, Lawrence, Mädrich, Mangold"
+"WALTER Tigers Tübingen","2015/16",46.15,"Agva, Albus, Hiller, Mihailovic, Nadjfeji, Radosavljevic",37.5,"Agva, Mihailovic, Radosavljevic",33.33,"Agva, Mihailovic, Radosavljevic"
+"ALBA BERLIN","2016/17",37.5,"Akpinar, Giffey, Hundt, Kikanovic, Milosavljevic, Vargas",30,"Giffey, Kikanovic, Milosavljevic",33.33,"Giffey, Kikanovic, Milosavljevic"
+"Basketball Löwen Braunschweig","2016/17",23.08,"Lagerpusch, Simon, Theis",14.29,"Theis",22.22,"Simon, Theis"
+"BG Göttingen","2016/17",30.77,"Menzel, Mönninghoff, Schwarz, Spohr",12.5,"Mönninghoff",12.5,"Mönninghoff"
+"Brose Bamberg","2016/17",58.82,"Harris, Heckmann, Melli, Miller, Nikolic, Radosevic, Staiger, Strelnieks, Theis, Zisis",64.29,"Harris, Heckmann, Melli, Miller, Nikolic, Radosevic, Strelnieks, Theis, Zisis",66.67,"Heckmann, Melli, Miller, Nikolic, Radosevic, Strelnieks, Theis, Zisis"
+"Eisbären Bremerhaven","2016/17",12.5,"Austin, Bleck",22.22,"Austin, Bleck",22.22,"Austin, Bleck"
+"EWE Baskets Oldenburg","2016/17",64.29,"Bacak, Duggins, Kramer, Kramer, Lockhart, Paulding, Qvale, Schwethelm, Wimberg",71.43,"Duggins, Kramer, Paulding, Qvale, Schwethelm",71.43,"Duggins, Kramer, Paulding, Qvale, Schwethelm"
+"FC Bayern München","2016/17",33.33,"Djedovic, Gavel, Jallow, Kleber, Taylor",40,"Djedovic, Gavel, Kleber, Taylor",36.36,"Djedovic, Gavel, Kleber, Taylor"
+"FRAPORT SKYLINERS","2016/17",54.55,"Ilzhöfer, Kiel, Merz, Morrison, Robertson, Zeeb",50,"Kiel, Morrison, Robertson",40,"Morrison, Robertson"
+"GIESSEN 46ers","2016/17",15.38,"Lischka, Wells",14.29,"Wells",14.29,"Wells"
+"medi bayreuth","2016/17",33.33,"Adler, Doreth, Seiferth, Wachalski",25,"Seiferth, Wachalski",37.5,"Doreth, Seiferth, Wachalski"
+"MHP RIESEN Ludwigsburg","2016/17",28.57,"Cotton, Loesing, Mccray, Trice",22.22,"Cotton, Trice",30,"Cotton, Loesing, Trice"
+"ratiopharm ulm","2016/17",52.94,"Babb, Braun, Butler, Ferner, Günther, Krämer, Morgan, Rohwer, Rubit",66.67,"Babb, Braun, Butler, Günther, Morgan, Rubit",60,"Babb, Braun, Butler, Günther, Morgan, Rubit"
+"s.Oliver Baskets","2016/17",31.25,"Betz, Lane, Stuckey, Ugrai, Ulmer",42.86,"Lane, Stuckey, Ulmer",40,"Lane, Stuckey, Ugrai, Ulmer"
+"Telekom Baskets Bonn","2016/17",14.29,"Blass, Koch",0,"Niemand",0,"Niemand"
+"WALTER Tigers Tübingen","2016/17",25,"Deschner, Hiller, Jordan",12.5,"Jordan",12.5,"Jordan"

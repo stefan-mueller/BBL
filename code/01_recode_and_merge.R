@@ -1,6 +1,9 @@
 ## Load packages
 
 library(tidyverse)
+library(stringi)
+
+source("code/functions_bbl.R")
 
 ## Load data
 
@@ -174,35 +177,65 @@ dta_final <- dta_final %>%
   mutate(morethan15mpg = ifelse(mpg > 15, "More than 15 minutes/game", "Less than 15 minutes/game")) %>% 
   mutate(morethan5ppg = ifelse(ppg > 5, "More than 5 points/game", "Less than 5 points/game"))
 
+# List players who stayed and left and transform from upper case to proper design
+dta_final <- dta_final %>% 
+  group_by(club, season) %>% 
+  mutate(name = stringi::stri_trans_totitle(name)) %>% 
+  mutate(name = stri_sub(name, 1, -3))
+  
 
 ## Save this dataset
 write.csv(dta_final, "data/bbl_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
 
 dta_stayed <- dta_final %>% 
+  ungroup() %>% 
   group_by(club, season) %>% 
-  mutate(stayed_ratio = round(100 * (sum(stayed)/n()), 2)) %>% 
-  select(club, season, stayed_ratio)
+  mutate(stayed_ratio = round(100 * (sum(stayed)/n()), 2)) %>%
+  group_by(club, season, stayed) %>% 
+  mutate(players_stayed = paste(name, collapse=", ")) %>% 
+  filter(stayed == 1) %>% 
+  ungroup() %>% 
+  select(club, season, stayed_ratio, players_stayed) %>% 
+  unique()
   
 dta_stayed_minutes <- dta_final %>% 
   group_by(club, season) %>% 
   filter(morethan15mpg == "More than 15 minutes/game") %>% 
-  mutate(stayed_ratio_morethan15mpg = round(100 * (sum(stayed)/n()), 2)) %>% 
-  select(club, season, stayed_ratio_morethan15mpg) %>% 
-  unique()
+  mutate(stayed_ratio_morethan15mpg = round(100 * (sum(stayed)/n()), 2)) %>%
+  group_by(club, season, stayed) %>% 
+  mutate(players_stayed_morethan15mpg = paste(name, collapse=", ")) %>% 
+  ungroup() %>% 
+  select(club, season, stayed_ratio_morethan15mpg, players_stayed_morethan15mpg, stayed) %>% 
+  mutate(stayed_temp = ifelse(stayed == 1, "stayed", "not there")) %>% 
+  unique() %>% 
+  mutate(players_stayed_morethan15mpg = ifelse(stayed_ratio_morethan15mpg == 0, "Niemand", players_stayed_morethan15mpg)) %>% 
+  filter(stayed_temp == "stayed" | stayed_ratio_morethan15mpg == 0) %>% 
+  select(-stayed_temp, -stayed)
+  
 
 dta_stayed_points <- dta_final %>% 
   group_by(club, season) %>% 
   filter(morethan5ppg == "More than 5 points/game") %>% 
   mutate(stayed_ratio_morethan5ppg = round(100 * (sum(stayed)/n()), 2)) %>% 
-  select(club, season, stayed_ratio_morethan5ppg) %>% 
-  unique()
+  group_by(club, season, stayed) %>% 
+  mutate(players_stayed_morethan5ppg = paste(name, collapse=", ")) %>% 
+  ungroup() %>% 
+  select(club, season, stayed_ratio_morethan5ppg, players_stayed_morethan5ppg, stayed) %>% 
+  mutate(stayed_temp = ifelse(stayed == 1, "stayed", "not there")) %>% 
+  unique() %>% 
+  mutate(players_stayed_morethan5ppg = ifelse(stayed_ratio_morethan5ppg == 0, "Niemand", players_stayed_morethan5ppg)) %>% 
+  filter(stayed_temp == "stayed" | stayed_ratio_morethan5ppg == 0) %>% 
+  select(-stayed_temp, -stayed)
+
 
 ## Left join (possibly more elegant solution) and keep unique values
-dta_final_summarised <- left_join(dta_stayed, dta_stayed_points)
-dta_final_summarised <- left_join(dta_final_summarised, dta_stayed_minutes)
-dta_final_summarised <- dta_final_summarised %>% 
-  unique()
+dta_final_summarised <- left_join(dta_stayed, dta_stayed_points, by = c("season", "club"))
+dta_final_summarised <- left_join(dta_final_summarised, dta_stayed_minutes, by = c("season", "club"))
+# dta_final_summarised <- dta_final_summarised %>% 
+#   unique() %>% 
+#   ifelse(is.na())
 
+dta_final_summarised[is.na(dta_final_summarised)] <- 0
 
 ## Save this dataset (ratios per season)
 write.csv(dta_final_summarised, "data/ratios_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
@@ -223,134 +256,51 @@ write.csv(dta_final_summarised_total, "data/ratios_aggregated.csv", fileEncoding
 ## Make plots with ggplot2 
 
 dta_final_summarised_long <- dta_final_summarised %>% 
-  tidyr::gather(type_ratio, ratio, stayed_ratio, stayed_ratio_morethan5ppg, stayed_ratio_morethan15mpg) 
-  
-dta_final_summarised_long_order <- dta_final_summarised_long %>% 
-  arrange(season, ratio) %>% 
-  mutate(order = row_number())
-
-dta_final_summarised_long$club <- factor(dta_final_summarised_long$club, 
-                                         levels = rev(levels(dta_final_summarised_long$club)))
-
-ggplot(dta_final_summarised_long, aes(x = club, y = ratio, order = ratio, 
-                                      colour = type_ratio, shape = type_ratio)) +
-  geom_point() +
-  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 20))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">10 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  facet_wrap(~season, scales = "free", nrow = 4) +
-  coord_flip() +
-  ylab(NULL) +
-  xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler") +
-  theme_bw() +
-  theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave("output/ratio_season.jpg", height = 12, width = 12)
-
+  select(club, season, stayed_ratio, stayed_ratio_morethan5ppg, 
+         stayed_ratio_morethan15mpg, players_stayed,
+         players_stayed_morethan5ppg, players_stayed_morethan15mpg) %>% 
+  tidyr::gather(type_ratio, ratio, stayed_ratio, stayed_ratio_morethan5ppg, stayed_ratio_morethan15mpg)  %>% 
+  mutate(Gehalten = ifelse(type_ratio == "stayed_ratio", players_stayed,
+                           ifelse(type_ratio == "stayed_ratio_morethan5ppg", players_stayed_morethan5ppg, players_stayed_morethan15mpg))) %>% 
+  select(-c(players_stayed, players_stayed_morethan5ppg, players_stayed_morethan15mpg)) %>% 
+  mutate(type_ratio = car::recode(type_ratio, "'stayed_ratio'='Total';
+                                  'stayed_ratio_morethan15mpg'='>15 Minuten pro Spiel';
+                                  'stayed_ratio_morethan5ppg'='>5 Punkte pro Spiel'"))
 
 dta_final_summarised_long_total <- dta_final_summarised_total %>% 
-  tidyr::gather(type_ratio, ratio, stayed_ratio_all, stayed_ratio_morethan5ppg_all, stayed_ratio_morethan15mpg_all) 
+  tidyr::gather(type_ratio, ratio, stayed_ratio_all, 
+                stayed_ratio_morethan5ppg_all, stayed_ratio_morethan15mpg_all) %>% 
+  mutate(type_ratio = car::recode(type_ratio, "'stayed_ratio_all'='Total';
+                                  'stayed_ratio_morethan15mpg_all'='>15 Minuten pro Spiel';
+                                  'stayed_ratio_morethan5ppg_all'='>5 Punkte pro Spiel'"))
+
 
 ggplot(dta_final_summarised_long_total, 
        aes(reorder(x = club, ratio), y = ratio,
            colour = type_ratio, shape = type_ratio)) +
   geom_point(alpha = 0.6, size = 3) +
   scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
+  scale_colour_manual(name = NULL, values = c("darkgreen", "blue", "red")) +
+  scale_shape_manual(name = NULL, values = c(8, 4, 16)) +
   coord_flip() +
   ylab("Prozent") +
   xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler \n(Durchschnitt 2012/13 bis 2016/17)") +
-  theme_bw() + 
+  ggtitle("Anteil verbliebener Spieler \n(Durchschnitt 2012/13 bis 2016/17)") +
+  theme_custom() + 
   theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave("output/ratio_total.jpg", height = 5, width = 7.5)
+        axis.text = element_text(colour = "black"),
+        legend.title.align = "0")
+ggsave("output/ratio_total.jpg", height = 6, width = 7.5)
 
 
+## Create plots per season
 
-plot_1617 <- ggplot(filter(dta_final_summarised_long, season == "2016/17"), 
-       aes(reorder(x = club, ratio), y = ratio, 
-           colour = type_ratio, shape = type_ratio)) +
-  geom_point(alpha = 0.6, size = 3) +
-  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  coord_flip() +
-  ylab("Prozent") +
-  xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2016/17)") +
-  theme_bw() + 
-  theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave(plot_1617, file = "output/ratio_1617.jpg", height = 5, width = 7.5)
+get_season_plot(which_season = "2016/17", save = "1617")
+get_season_plot(which_season = "2015/16", save = "1516")
+get_season_plot(which_season = "2014/15", save = "1415")
+get_season_plot(which_season = "2013/14", save = "1314")
+get_season_plot(which_season = "2012/13", save = "1213")
 
-plot_1516 <- ggplot(filter(dta_final_summarised_long, season == "2015/16"), 
-                    aes(reorder(x = club, ratio), y = ratio, 
-                        colour = type_ratio, shape = type_ratio)) +
-  geom_point(alpha = 0.6, size = 3) +
-  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  coord_flip() +
-  ylab("Prozent") +
-  xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2015/16)") +
-  theme_bw() + 
-  theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave(plot_1516, file = "output/ratio_1516.jpg", height = 5, width = 7.5)
-
-plot_1415 <- ggplot(filter(dta_final_summarised_long, season == "2014/15"), 
-                    aes(reorder(x = club, ratio), y = ratio, 
-                        colour = type_ratio, shape = type_ratio)) +
-  geom_point(alpha = 0.6, size = 3) +
-  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  coord_flip() +
-  ylab("Prozent") +
-  xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2014/15)") +
-  theme_bw() + 
-  theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave(plot_1415, file = "output/ratio_1415.jpg", height = 5, width = 7.5)
-
-
-plot_1314 <- ggplot(filter(dta_final_summarised_long, season == "2013/14"), 
-                    aes(reorder(x = club, ratio), y = ratio, 
-                        colour = type_ratio, shape = type_ratio)) +
-  geom_point(alpha = 0.6, size = 3) +
-  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  coord_flip() +
-  ylab("Prozent") +
-  xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2013/14)") +
-  theme_bw() + 
-  theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave(plot_1314, file = "output/ratio_1314.jpg", height = 5, width = 7.5)
-
-
-plot_1213 <- ggplot(filter(dta_final_summarised_long, season == "2012/13"), 
-                    aes(reorder(x = club, ratio), y = ratio, 
-                        colour = type_ratio, shape = type_ratio)) +
-  geom_point(alpha = 0.6, size = 3) +
-  scale_y_continuous(limits = c(0, 90), breaks = c(seq(0, 90, by = 10))) +
-  scale_shape_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  scale_color_discrete(name = NULL, labels = c("Total", ">15 Minuten pro Spiel", ">5 Punkte pro Spiel")) +
-  coord_flip() +
-  ylab("Prozent") +
-  xlab(NULL) +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler (2012/13)") +
-  theme_bw() + 
-  theme(legend.position = "bottom",
-        axis.text = element_text(colour = "black"))
-ggsave(plot_1213, file = "output/ratio_1213.jpg",height = 5, width = 7.5)
 
 
 dta_final_compare_years <- dta_final_summarised_long %>% 
@@ -371,8 +321,8 @@ ggplot(dta_final_compare_years, aes(x = season, y = mean_type,
   geom_hline(yintercept = mean(dta_final_summarised$stayed_ratio)) +
   xlab(NULL) +
   ylab("Prozent") +
-  ggtitle("Anteil der im Kader verbliebenen eingesetzten Spieler\n(vereinsübergreifend pro Saison)") +
-  theme_bw() +
+  ggtitle("Anteil verbliebener Spieler\n(vereinsübergreifend pro Saison)") +
+  theme_custom() +
   theme(legend.position = "bottom")
 ggsave("output/comparison_per_season.jpg", height = 5, width = 7.5)
 
@@ -397,7 +347,8 @@ ggplot(data = dta_merged, aes(x = stayed_ratio_baskets_bonn, y = stayed_ratio_al
   xlab("Durchschnitt (berechnet von Baskets Bonn)") +
   ylab("Durchschnitt (eigene Berechnungen)") +
   ggtitle("Vergleich der Prozentsatzes der verbliebenen Spieler\n(2012/13 bis 2016/17)") +
-  theme_bw()
+  theme_custom()
 ggsave("output/comparison_ratios.jpg", width = 7.5, height = 7.5)
+
 
 cor.test(dta_merged$stayed_ratio_all, dta_merged$stayed_ratio_baskets_bonn)
