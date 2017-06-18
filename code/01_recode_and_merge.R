@@ -237,9 +237,23 @@ dta_final_summarised <- left_join(dta_final_summarised, dta_stayed_minutes, by =
 
 dta_final_summarised[is.na(dta_final_summarised)] <- 0
 
+dta_final_summarised <- dta_final_summarised %>% 
+  mutate(club_season_id = paste(season, club, sep = "_"))
+
+## Load data with table position 
+dta_position <- read.csv("raw_data/club_season_place.csv", 
+                         fileEncoding = "utf-8") %>% 
+  mutate(club_season_id = paste(season, club, sep = "_")) %>% 
+  select(-c(club, season))
+  
+
+## Merge
+dta_final_summarised <- merge(dta_position, dta_final_summarised, 
+                   by = c("club_season_id"), all.x = TRUE) %>% 
+  filter(!is.na(club))
+
 ## Save this dataset (ratios per season)
 write.csv(dta_final_summarised, "data/ratios_2012-2017.csv", fileEncoding = "utf-8", row.names = FALSE)
-
 
 dta_final_summarised_total <- dta_final_summarised %>% 
   group_by(club) %>% 
@@ -258,7 +272,7 @@ write.csv(dta_final_summarised_total, "data/ratios_aggregated.csv", fileEncoding
 dta_final_summarised_long <- dta_final_summarised %>% 
   select(club, season, stayed_ratio, stayed_ratio_morethan5ppg, 
          stayed_ratio_morethan15mpg, players_stayed,
-         players_stayed_morethan5ppg, players_stayed_morethan15mpg) %>% 
+         players_stayed_morethan5ppg, players_stayed_morethan15mpg, table_position_lag) %>% 
   tidyr::gather(type_ratio, ratio, stayed_ratio, stayed_ratio_morethan5ppg, stayed_ratio_morethan15mpg)  %>% 
   mutate(Verblieben = ifelse(type_ratio == "stayed_ratio", players_stayed,
                            ifelse(type_ratio == "stayed_ratio_morethan5ppg", players_stayed_morethan5ppg, players_stayed_morethan15mpg))) %>% 
@@ -293,6 +307,31 @@ ggplot(dta_final_summarised_long_total,
 ggsave("output/ratio_total.jpg", height = 6, width = 7.5)
 
 
+## Scatterplot with ratio and previous position
+
+dta_final_summarised_long$type_ratio <- factor(dta_final_summarised_long$type_ratio, levels = rev(sort(unique(dta_final_summarised_long$type_ratio))))
+
+dta_final_summarised_long <- dta_final_summarised_long %>% 
+  ungroup()
+
+plot_position_ratio <- ggplot(dta_final_summarised_long, 
+                              aes(x = table_position_lag, 
+                                 y = ratio)) +
+  geom_smooth() +
+  scale_x_reverse(limits = c(17,1), breaks = c(seq(17, 1, by = -2))) +
+  geom_point(aes(fill = season)) +
+  geom_vline(xintercept = 8) +
+  facet_grid(season~type_ratio) +
+  xlab("Tabellenposition in der Vorsaison") +
+  ylab("Prozent verbliebener Spieler") +
+  ggtitle("Der Zusammenhang zwischen Vorsaison und verbliebenen Spielern") +
+  theme_custom() + 
+  theme(legend.position = "none")
+ggsave(plot_position_ratio, file = "output/comparison_position_ratio.jpg", width = 7.5, height = 7.5)
+
+
+library(plotly)
+ggplotly(plot_position_ratio)
 ## Create plots per season
 # based on dta_final_summarised_long
 
